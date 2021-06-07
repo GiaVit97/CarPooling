@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:weightSum="5"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    tools:context=".ui.login.LoginFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:gravity="bottom"
+        android:paddingBottom="@dimen/small_2x"
+        android:text="@string/login_welcome_message"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/blue"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/welcome_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:maxHeight="20dp"
+        android:layout_weight="2"
+        android:contentDescription="@string/login_welcome_image_content_description"
+        android:src="@drawable/login_welcome_image" />
+
+    <LinearLayout
+        android:id="@+id/layout_login"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/login"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/login_subtitle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+<!--      <Button-->
+<!--            android:id="@+id/button_login"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/medium_4x"-->
+<!--            android:text="Login with Google" />-->
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_4x"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

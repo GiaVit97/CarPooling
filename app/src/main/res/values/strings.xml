@@ -1,0 +1,166 @@
+<resources>
+    <string name="app_name">Happy Pool</string>
+
+    <!-- >Profile label -->
+    <string name="nickname">Nickname*</string>
+    <string name="email_address">Email*</string>
+    <string name="full_name">Full Name</string>
+    <string name="location">Location</string>
+
+
+
+    <string name="profile_image">profile_image</string>
+    <string name="edit">Edit Trip</string>
+    <string name="update">Update</string>
+    <string name="todo">TODO</string>
+    <string name="save">Save</string>
+    <string name="birthDate">Date of Birth</string>
+    <string name="telephone">Telephone</string>
+    <string name="edit_selected">Edit Selected</string>
+    <string name="content_description_profile_image">Profile Image</string>
+    <string name="content_description_camera_imageButton">Image of a camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="choose_image_title">Upload image from:</string>
+    <string name="camera_hardware_not_found">We cannot detect your camera, sorry</string>
+    <string name="permission_denied">You denied the permission, go to setting and enable them</string>
+    <string name="generic_problem">We had a problem, try again</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_trips">Trips</string>
+    <string name="menu_profile">Profile</string>
+    <string name="find_trips">Find trips</string>
+    <string name="bookings">Bookings</string>
+
+
+<!--    Edit trip -->
+
+    <string name="find_trip_navigation">Edit a trip</string>
+
+    <string name="description">description</string>
+    <string name="stops">intermediate stops</string>
+    <string name="price">price</string>
+    <string name="seats">seats</string>
+    <string name="duration">duration</string>
+    <string name="time">Time</string>
+    <string name="date">date</string>
+    <string name="arrival">arrival</string>
+    <string name="departure">Departure</string>
+
+    <string name="add_a_new_trip">Add a new trip</string>
+    <string name="content_description_carImage">Image of a car</string>
+    <string name="woman_walking">woman walking</string>
+    <string name="empty_trip_list_text">You don\'t have any trip</string>
+    <string name="empty_others_trip_list_text">Oops… There are no available trips</string>
+    <string name="chair_icon">chair icon</string>
+    <string name="smoke_icon">smoke icon</string>
+    <string name="music_note_icon">music note icon</string>
+    <string name="pet_footprint_icon">pet footprint icon</string>
+    <string name="estimated_duration_label">Estimated duration:</string>
+    <string name="price_passenger_label">Price</string>
+    <string name="additional_information_section_title">Additional Information</string>
+    <string name="smoke_preferences">Smoke</string>
+    <string name="animals_preferences">Animals</string>
+    <string name="music_preferences">Music</string>
+    <string name="description_title">Car Information</string>
+
+    <string name="smoke_yes">You can smoke</string>
+    <string name="smoke_no">Sorry, you can\'t smoke</string>
+    <string name="animal_yes">You can bring your animal</string>
+    <string name="animal_no">Sorry, you can\'t bring your animal</string>
+    <string name="music_yes">You can play music</string>
+    <string name="music_no">Sorry, you can\'t play music</string>
+
+    <string-array name="seats_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+
+    <string-array name="review_array">
+        <item>All review</item>
+        <item>Driver review</item>
+        <item>Passenger review</item>
+    </string-array>
+
+    <string-array name="preferences_array">
+        <item>No preferences</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="price_details_trip">€ %s</string>
+    <string name="seats_details_trip">"%d available seats"</string>
+
+
+    <!-- Strings related to login -->
+    <string name="login_welcome_message">Welcome to <br />CarPooling</string>
+    <string name="login_welcome_image_content_description">A woman enters inside a car</string>
+    <string name="login">Login</string>
+    <string name="login_subtitle">Please login to continue</string>
+    <string name="log_out">Log out</string>
+    <string name="header_plaeholder_username">Anonymous User</string>
+    <string name="header_placeholder_email">anonymous@email.com</string>
+    <string name="smoke_label">Smoke:</string>
+    <string name="animal_label">Animal:</string>
+    <string name="music_label">Music:</string>
+    <string name="filterLabel">Filter</string>
+    <string name="price_for_passenger">Price</string>
+    <string name="estimated_duration_hh_mm">Estimated duration (hh:mm)</string>
+    <string name="additional_information">Additional information</string>
+    <string name="number_of_seats">Number of seats</string>
+    <string name="departure_date">Departure date</string>
+    <string name="add_intermediate_stop">Add Intermediate Stop</string>
+    <string name="number_of_seats_hint">Number of seats:</string>
+    <string name="car_information">Car Information</string>
+    <string name="car_model">Car model</string>
+    <string name="manage_passengers">Manage Passengers</string>
+    <string name="car_color">Car color</string>
+    <string name="manage_passengers_button">Manage passengers</string>
+    <string name="arrival_time">Arrival Time</string>
+    <string name="departure_time">Departure Time</string>
+    <string name="location_text">Location</string>
+    <string name="time_text">Time</string>
+    <string name="minus_circle_icon">minus circle icon</string>
+    <string name="book_this_trip">Book this trip</string>
+    <string name="block">block</string>
+    <string name="remove">Remove</string>
+    <string name="accept">Accept</string>
+    <string name="booked_users">Booked users</string>
+    <string name="pending_invites">Pending invites</string>
+
+    <string name="mapbox_access_token">pk.eyJ1IjoiZ2lhdml0OTciLCJhIjoiY2tveWhuNGNuMDdrdTJ3andmczFxcGhrOSJ9.vxu5WAJoeAQFtpDRoQ_1Iw</string>
+    <string name="remove_filters">Remove filters</string>
+    <string name="apply">Apply</string>
+    <string name="close">Close</string>
+    <string name="button_image_represent_a_compass">Button image represent a compass</string>
+    <string name="icon_of_a_clock">Icon of a clock</string>
+    <string name="icon_of_a_user">Icon of a user</string>
+    <string name="insert_a_comment">Insert a comment</string>
+    <string name="arrival_information">Arrival</string>
+    <string name="departure_information">Departure</string>
+    <string name="trip_information">Trip Information</string>
+    <string name="filter">Filter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="estimated_duration">Duration</string>
+    <string name="departure_location">Departure location</string>
+    <string name="arrival_location">Arrival location</string>
+    <string name="review_the_trip">Review the trip</string>
+    <string name="intermediate_stops">Intermediate stops</string>
+    <string name="estimated_duration_text">Estimated duration: 00:00</string>
+    <string name="image_block">Image notify that the trip is block</string>
+    <string name="passenger">Passenger</string>
+</resources>

@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".ui.yourTrips.TripEditFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/small_2x">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/title_trip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/additionalInfo_title"
+
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tripInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="@string/trip_information"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+
+                    app:layout_constraintBottom_toTopOf="@id/departureDateTimeLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/departureDateTimeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    app:layout_constraintBottom_toTopOf="@id/priceLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tripInfo">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/departureDateLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/small_2x"
+
+                        android:layout_weight="2"
+                        android:gravity="start"
+                        android:inputType="date"
+                        app:errorEnabled="true"
+                        app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                        app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/departureDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+
+                            android:focusable="false"
+                            android:hint="@string/departure_date"
+
+                            android:inputType="date" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/departureTimeLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small_2x"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:inputType="text"
+                        app:errorEnabled="true"
+                        app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                        app:startIconDrawable="@drawable/ic_time">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/departureTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+
+                            android:focusable="false"
+                            android:hint="@string/time"
+
+                            android:inputType="date" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/priceLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small_2x"
+                    android:layout_weight="1"
+                    android:hint="@string/price_for_passenger"
+                    android:inputType="numberDecimal"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toTopOf="@id/estimatedTripDuration"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/departureDateTimeLayout"
+                    app:startIconDrawable="@drawable/ic_baseline_euro_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/estimatedTripDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium_4x"
+                    tools:text="Estimated duration: 02:00"
+                    style="@style/TextAppearance.MaterialComponents.Body2"
+                    app:layout_constraintTop_toBottomOf="@id/priceLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/departureInfo"
+                    />
+
+                <TextView
+                    android:id="@+id/departureInfo"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/medium_4x"
+                    android:paddingBottom="@dimen/medium_4x"
+                    android:text="@string/departure_information"
+                    app:layout_constraintBottom_toTopOf="@id/departureLocationLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/estimatedTripDuration" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/departureLocationLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/small_2x"
+                    android:layout_weight="2"
+                    android:gravity="start"
+                    android:inputType="text"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toTopOf="@id/intermediatetext"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/departureInfo">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/departureLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/location"
+                        android:inputType="text" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/intermediatetext"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:paddingTop="@dimen/medium_4x"
+                    android:paddingBottom="@dimen/medium_4x"
+                    android:text="@string/intermediate_stops"
+                    app:layout_constraintBottom_toTopOf="@id/stopsView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/addStop"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/departureLocationLayout" />
+
+
+                <Button
+                    android:id="@+id/addStop"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:contentDescription="@string/add_intermediate_stop"
+                    android:drawableEnd="@drawable/ic_add"
+                    android:text="Add"
+                    app:layout_constraintBottom_toBottomOf="@id/intermediatetext"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/intermediatetext"
+                    app:layout_constraintTop_toTopOf="@id/intermediatetext" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/stopsView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@id/arrivalInfo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/intermediatetext" />
+
+                <TextView
+                    android:id="@+id/arrivalInfo"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_2x"
+                    android:paddingTop="@dimen/medium_4x"
+                    android:paddingBottom="@dimen/medium_4x"
+                    android:text="@string/arrival_information"
+                    app:layout_constraintBottom_toTopOf="@id/arrivalLocationLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/stopsView" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/arrivalLocationLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/small_2x"
+
+
+                    android:gravity="start"
+                    android:inputType="text"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toTopOf="@id/numberSeatsLayout"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/arrivalInfo">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/arrivalLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/location"
+                        android:inputType="text" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/numberSeatsLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="@dimen/small_2x"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="@dimen/small_2x"
+                    android:hint="@string/number_of_seats"
+                    android:minWidth="150sp"
+                    app:errorEnabled="true"
+
+                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toTopOf="@id/additionalInfo_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/arrivalLocationLayout"
+                    app:startIconDrawable="@drawable/trip_seats">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/numberSeats"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/number_of_seats"
+                        android:inputType="none"
+                        tools:text="0" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/additionalInfo_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/medium_4x"
+                    android:layout_marginBottom="24dp"
+
+                    android:gravity="start"
+                    android:text="@string/additional_information_section_title"
+
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    app:layout_constraintBottom_toTopOf="@id/smokeLayout"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/numberSeatsLayout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/smokeLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_2x"
+                    android:layout_marginBottom="@dimen/small_2x"
+                    android:hint="@string/smoke_label"
+                    android:minWidth="200sp"
+                    app:layout_constraintBottom_toTopOf="@id/animalLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/additionalInfo_title"
+                    app:startIconDrawable="@drawable/trip_smoke_yes">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/smoke"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/smoke_label"
+                        android:inputType="none"
+                        tools:text="No preferences" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/animalLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/small_2x"
+                    android:layout_marginBottom="@dimen/small_2x"
+                    android:hint="@string/animal_label"
+                    android:minWidth="200sp"
+                    app:layout_constraintBottom_toTopOf="@id/musicLayout"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/smokeLayout"
+                    app:startIconDrawable="@drawable/trip_animal_yes">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/animal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/animal_label"
+                        android:inputType="none"
+                        tools:text="No preferences" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/musicLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/small_2x"
+                    android:layout_marginBottom="@dimen/small_2x"
+                    android:hint="@string/music_label"
+                    android:minWidth="200sp"
+                    app:layout_constraintBottom_toTopOf="@id/additionalInfoLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/animalLayout"
+                    app:startIconDrawable="@drawable/trip_music_yes">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/music"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/music_label"
+                        android:inputType="none"
+                        tools:text="No preferences" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/additionalInfoLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="start"
+                    android:hint="@string/additional_information"
+                    android:inputType="textMultiLine"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="140"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toTopOf="@+id/carTypeLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/musicLayout"
+                    app:startIconDrawable="@drawable/ic_baseline_edit_note_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/additionalInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:maxLength="141" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/carTypeLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+
+                    android:hint="@string/car_model"
+                    android:inputType="text"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+
+                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toTopOf="@id/carColorLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/carImageView"
+                    app:layout_constraintTop_toBottomOf="@id/additionalInfoLayout"
+                    app:startIconDrawable="@drawable/ic_outline_directions_car_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/carType"
+                        android:layout_width="155dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLength="11" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/carColorLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+
+                    android:hint="@string/car_color"
+                    android:inputType="text"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/carTypeLayout"
+                    app:layout_constraintStart_toStartOf="@id/carTypeLayout"
+                    app:layout_constraintTop_toBottomOf="@id/carTypeLayout"
+                    app:startIconDrawable="@drawable/ic_outline_directions_car_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/carColor"
+                        android:layout_width="155dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textImeMultiLine"
+                        android:maxLength="11" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/carImageView"
+                    android:layout_width="80dp"
+                    android:layout_height="75dp"
+
+                    android:contentDescription="@string/content_description_carImage"
+                    android:src="@drawable/car"
+
+                    app:layout_constraintBottom_toBottomOf="@id/carColorLayout"
+                    app:layout_constraintEnd_toStartOf="@id/carTypeLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/carTypeLayout" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonCar"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+
+                    android:contentDescription="@string/content_description_camera_imageButton"
+                    app:layout_constraintBottom_toBottomOf="@+id/carImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/carImageView"
+                    app:layout_constraintStart_toStartOf="@+id/carImageView"
+                    app:layout_constraintTop_toTopOf="@+id/carImageView"
+                    app:srcCompat="@android:drawable/ic_menu_camera" />
+
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/managePassengersButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_menu_share"
+            android:text="@string/manage_passengers_button"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

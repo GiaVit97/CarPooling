@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion "30.0.3"
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    defaultConfig {
+        applicationId "it.polito.mad.carpooling_09"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 4
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+    }
+    
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlinStdlibVersion"
+    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+
+    // Useful for handling images
+    implementation "io.coil-kt:coil:$rootProject.coilVersion"
+
+    // For the recyclerview
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+
+    // Navigation component dependencies
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
+
+    // Material library
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+
+    // Firebase
+    implementation "com.google.firebase:firebase-auth-ktx:$rootProject.firebaseAuthVersion"
+    implementation "com.google.firebase:firebase-storage-ktx:$rootProject.firebaseStorageVersion"
+    implementation "com.google.firebase:firebase-firestore-ktx:$rootProject.firestoreVersion"
+    implementation "com.firebase:geofire-android-common:$rootProject.geofireVersion"
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "com.google.android.gms:play-services-auth:$rootProject.googleAuthVersion"
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.legacySupportVersion"
+    implementation "androidx.annotation:annotation:1.2.0"
+
+    //MAPS
+    implementation "org.osmdroid:osmdroid-android:$rootProject.osmDroidVersion"
+    implementation "com.mapbox.search:mapbox-search-android-ui:$rootProject.mapBoxVersion"
+    implementation "com.github.MKergall:osmbonuspack:$rootProject.osmBonusPackVersion"
+    implementation"androidx.preference:preference-ktx:$rootProject.preference_version"
+
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+
+    testImplementation "junit:junit:$rootProject.junitVersion"
+
+}

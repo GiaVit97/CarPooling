@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:fillViewport="true"
+    android:orientation="vertical"
+    tools:context=".ui.yourTrips.ManagePassengersFragment">
+
+    <LinearLayout
+        android:id="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:padding="@dimen/small_2x">
+
+        <TextView
+            android:id="@+id/accepted_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="@string/booked_users"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_accepted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/booked_empty_list"
+            layout="@layout/fragment_booked_empty_list"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/requests_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/pending_invites"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_requests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:contentDescription="@string/woman_walking"
+            android:src="@drawable/ic_pending_empty_list" />
+
+        <TextView
+            android:id="@+id/empty_pending_message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/small_2x"
+            android:text="No pending user"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+        <TextView
+            android:id="@+id/empty_pending_message_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="There are no requests to accept"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+
+    </LinearLayout>
+
+
+</ScrollView>

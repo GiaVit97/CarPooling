@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/OthersTripListFragment">
+
+    <fragment
+        android:id="@+id/TripListFragment"
+        android:name="it.polito.mad.carpooling_09.ui.yourTrips.TripListFragment"
+        android:label="@string/menu_trips"
+        tools:layout="@layout/fragment_trip_list">
+        <action
+            android:id="@+id/action_nav_trips_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_trips_to_tripEditFragment"
+            app:destination="@id/tripEditFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/tripDetailsFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_TripListFragment_to_managePassengersFragment"
+            app:destination="@id/managePassengersFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ShowProfileFragment"
+        android:name="it.polito.mad.carpooling_09.ui.profile.ShowProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_show_profile">
+        <action
+            android:id="@+id/action_show_profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <argument
+            android:name="userId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_ShowProfileFragment_to_ratingsFragment"
+            app:destination="@id/ratingsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_ShowProfileFragment_to_ratingsFragmentProfile"
+            app:destination="@id/ratingsFragmentProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="it.polito.mad.carpooling_09.ui.profile.EditProfileFragment"
+        android:label="Edit profile"
+        tools:layout="@layout/fragment_edit_profile">
+        <action
+            android:id="@+id/action_editProfileFragment_to_show_profile"
+            app:destination="@id/ShowProfileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/ShowProfileFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="fullName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="nickName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="location"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="birthDate"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="telephone"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="imageProfileFileName"
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/tripDetailsFragment"
+        android:name="it.polito.mad.carpooling_09.ui.yourTrips.TripDetailsFragment"
+        android:label="Details of a trip"
+        tools:layout="@layout/fragment_trip_details">
+        <action
+            android:id="@+id/action_tripDetailsFragment_to_tripEditFragment"
+            app:destination="@id/tripEditFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/tripDetailsFragment" />
+        <argument
+            android:name="tripID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_tripDetailsFragment_to_mapRouteFragment"
+            app:destination="@id/mapRouteFragment" />
+        <argument
+            android:name="userID"
+            app:argType="string" />
+        <argument
+            android:name="bookingDeparture"
+            app:argType="it.polito.mad.carpooling_09.data.LongLat"
+            android:defaultValue="@null"
+            app:nullable="true" />
+        <argument
+            android:name="bookingArrival"
+            android:defaultValue="@null"
+            app:argType="it.polito.mad.carpooling_09.data.LongLat"
+            app:nullable="true" />
+        <argument
+            android:name="bookingStatus"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripEditFragment"
+        android:name="it.polito.mad.carpooling_09.ui.yourTrips.TripEditFragment"
+        android:label="@string/find_trip_navigation"
+        tools:layout="@layout/fragment_trip_edit">
+        <action
+            android:id="@+id/action_tripEditFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/TripListFragment" />
+        <action
+            android:id="@+id/action_tripEditFragment_to_managePassengersFragment"
+            app:destination="@id/managePassengersFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="tripID"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_tripEditFragment_to_TripListFragment"
+            app:destination="@id/TripListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/OthersTripListFragment"
+        android:name="it.polito.mad.carpooling_09.ui.findTrip.OthersTripListFragment"
+        android:label="Find a trip"
+        tools:layout="@layout/fragment_others_trip_list">
+        <action
+            android:id="@+id/action_OthersTripListFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_OthersTripListFragment_to_filterDialogFragment"
+            app:destination="@id/filterDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/managePassengersFragment"
+        android:name="it.polito.mad.carpooling_09.ui.yourTrips.ManagePassengersFragment"
+        android:label="@string/manage_passengers"
+        tools:layout="@layout/fragment_manage_passengers">
+        <argument
+            android:name="tripID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_managePassengersFragment_to_ShowProfileFragment5"
+            app:destination="@id/ShowProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_managePassengersFragment_to_ratingsFragment"
+            app:destination="@id/ratingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/login_graph"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="it.polito.mad.carpooling_09.ui.login.LoginFragment"
+            android:label="Login"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_loginFragment_to_OthersTripListFragment"
+                app:destination="@id/OthersTripListFragment"
+                app:popUpTo="@id/loginFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
+    <action
+        android:id="@+id/action_global_login_graph"
+        app:destination="@id/login_graph"
+        app:popUpTo="@id/OthersTripListFragment"
+        app:popUpToInclusive="true" />
+    <dialog
+        android:id="@+id/ratingsFragment"
+        android:name="it.polito.mad.carpooling_09.ui.interestedTrips.RatingsFragment"
+        android:label="Write a rating"
+        tools:layout="@layout/ratings_fragment">
+        <argument
+            android:name="booking"
+            app:argType="it.polito.mad.carpooling_09.data.Booking" />
+        <argument
+            android:name="role"
+            app:argType="string" />
+    </dialog>
+
+
+    <fragment
+        android:id="@+id/BoughtTripsListFragment"
+        android:name="it.polito.mad.carpooling_09.ui.interestedTrips.BoughtTripsListFragment"
+        android:label="Bought Trips"
+        tools:layout="@layout/fragment_bought_trips_list">
+
+        <action
+            android:id="@+id/action_BoughtTripsListFragment_to_ratingsFragment"
+            app:destination="@id/ratingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_BoughtTripsListFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/mapDialogFragment"
+        android:name="it.polito.mad.carpooling_09.MapDialogFragment"
+        android:label="Map"
+        tools:layout="@layout/dialog_map">
+        <argument
+            android:name="latitude"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="longitude"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
+    <action
+        android:id="@+id/action_global_mapDialog"
+        app:destination="@id/mapDialogFragment" />
+
+
+    <fragment
+        android:id="@+id/mapRouteFragment"
+        android:name="it.polito.mad.carpooling_09.ui.yourTrips.MapRouteFragment"
+        android:label="Map Route"
+        tools:layout="@layout/fragment_map_route">
+        <action
+            android:id="@+id/action_mapRouteFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="tripID"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/ratingsFragmentProfile"
+        android:name="it.polito.mad.carpooling_09.ui.profile.RatingListFragment"
+        android:label="Ratings"
+        tools:layout="@layout/fragment_rating_list">
+        <argument
+            android:name="userID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_ratingsFragmentProfile_to_ShowProfileFragment"
+            app:destination="@id/ShowProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/TripsOfInterestListFragment"
+        android:name="it.polito.mad.carpooling_09.ui.interestedTrips.TripsOfInterestListFragment"
+        android:label="Interested Trips"
+        tools:layout="@layout/fragment_trips_of_interest_list">
+        <action
+            android:id="@+id/action_TripsOfInterestListFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/filterDialogFragment"
+        android:name="it.polito.mad.carpooling_09.ui.findTrip.FilterDialogFragment"
+        android:label="Filter trips"
+        tools:layout="@layout/dialog_filter">
+        <action
+            android:id="@+id/action_filterDialogFragment_to_OthersTripListFragment"
+            app:destination="@id/OthersTripListFragment" />
+    </dialog>
+
+</navigation>

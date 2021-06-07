@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StopsView">
+        <attr name="compact" format="boolean"/>
+        <attr name="Stops" format="string"/>
+    </declare-styleable>
+</resources>

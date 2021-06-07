@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/OthersTripListFragment"
+            android:icon="@drawable/ic_baseline_search_24"
+            android:title="@string/find_trips" />
+    </group>
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/subtitle"
+            android:title="My section">
+            <menu>
+                <item
+                    android:id="@+id/TripListFragment"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_baseline_directions_car_24"
+                    android:title="@string/menu_trips" />
+
+                <item
+                    android:id="@+id/BoughtTripsListFragment"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_outline_hail_24"
+                    android:title="@string/bookings" />
+
+                <item
+                    android:id="@+id/TripsOfInterestListFragment"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_baseline_favorite_24"
+                    android:title="Interested trips" />
+
+                <item
+                    android:id="@+id/ShowProfileFragment"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_baseline_person_24"
+                    android:title="@string/menu_profile" />
+
+                <item
+                    android:title=""
+                    android:enabled="false"/>
+            </menu>
+        </item>
+
+    </group>
+</menu>

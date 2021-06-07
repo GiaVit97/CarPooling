@@ -1,0 +1,85 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    // Define versions in a single place
+    ext {
+        // Sdk and tools
+        compileSdkVersion = 30
+        minSdkVersion = 21
+        targetSdkVersion = 30
+
+        gradleVersion = '4.2.1'
+        kotlinVersion = '1.5.0'
+        nav_version = "2.3.5"
+
+        kotlinStdlibVersion = '1.4.32'
+        ktxVersion = '1.5.0'
+        appCompatVersion = '1.3.0'
+        materialVersion = '1.3.0'
+        constraintLayoutVersion = '2.0.4'
+        coilVersion = '1.1.1'
+
+        recyclerViewVersion = '1.2.0'
+        navigationVersion = '2.3.5'
+        lifecycleVersion = '2.3.1'
+
+        espressoVersion = '3.3.0'
+        legacySupportVersion = '1.0.0'
+        testExtJunit = '1.1.2'
+        junitVersion = '4.13.2'
+
+        firestoreVersion = '23.0.0'
+        firebaseStorageVersion = '20.0.0'
+        firebaseAuthVersion = '21.0.1'
+
+        googleAuthVersion = '19.0.0'
+
+        osmDroidVersion = '6.1.10'
+        mapBoxVersion = '1.0.0-beta.13'
+        osmBonusPackVersion = '6.7.0'
+        preference_version = '1.1.1'
+        geofireVersion = '3.1.0'
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+        classpath 'com.google.gms:google-services:4.3.8'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+
+
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                // Do not change the username below.
+                // This should always be `mapbox` (not your username).
+                username = "mapbox"
+                // Use the secret token you stored in gradle.properties as the password
+                password = project.properties['MAPBOX_ACCESS_TOKEN'] ?: ""
+            }
+        }
+        maven { url "https://jitpack.io" }
+    }
+}
+
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

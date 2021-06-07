@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="imageView_height">200dp</dimen>
+    <dimen name="small_2x">8dp</dimen>
+    <dimen name="medium_4x">16dp</dimen>
+
+    <dimen name="card_side_margin">12dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+</resources>

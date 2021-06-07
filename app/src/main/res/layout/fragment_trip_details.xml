@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.yourTrips.TripDetailsFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/departureDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/small_2x"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textStyle="bold"
+                tools:text="Wed April 27, 2021" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_4x"
+                android:paddingTop="@dimen/medium_4x">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/mapRouteFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/viewMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/estimatedDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_2x"
+                    android:drawablePadding="@dimen/small_2x"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:drawableStartCompat="@drawable/ic_time"
+
+                    app:layout_constraintBottom_toTopOf="@id/divider1"
+                    app:layout_constraintEnd_toStartOf="@id/price"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="3h 20m" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_2x"
+                    android:drawablePadding="@dimen/small_2x"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textColor="#B50000"
+                    app:drawableStartCompat="@drawable/ic_baseline_euro_24"
+                    app:layout_constraintBottom_toBottomOf="@id/estimatedDuration"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/estimatedDuration"
+                    app:layout_constraintTop_toTopOf="@+id/estimatedDuration"
+                    tools:text="50,00" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="@dimen/small_2x"
+                    android:layout_marginBottom="@dimen/small_2x"
+                    android:background="@color/light_grey"
+
+                    app:layout_constraintBottom_toTopOf="@id/linearProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/estimatedDuration" />
+
+
+                <LinearLayout
+                    android:id="@+id/linearProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/divider2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider1">
+
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="@dimen/medium_4x"
+                        android:layout_marginEnd="@dimen/medium_4x"
+                        android:contentDescription="@string/icon_of_a_user"
+                        android:src="@drawable/avatar" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_2x"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                            tools:text="MarcoRossi97" />
+
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:isIndicator="true"
+                            android:rating="0"
+                            tools:rating="3.5" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="@dimen/small_2x"
+                    android:layout_marginBottom="@dimen/small_2x"
+                    android:background="@color/light_grey"
+
+                    app:layout_constraintBottom_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linearProfile" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_2x"
+                android:text="Trip Route" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/stopsView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
+
+
+            <TextView
+                android:id="@+id/numberSeats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/small_2x"
+                android:drawablePadding="@dimen/small_2x"
+                android:hint="@string/full_name"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:drawableStartCompat="@drawable/trip_seats"
+                tools:text="2 available seats" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="@dimen/small_2x"
+                android:layout_marginBottom="@dimen/small_2x"
+                android:background="@color/light_grey" />
+
+            <TextView
+                android:id="@+id/additionalInfoTitle"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_2x"
+                android:text="@string/additional_information_section_title" />
+
+
+            <TextView
+                android:id="@+id/smoke"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/small_2x"
+                android:drawablePadding="@dimen/small_2x"
+                android:paddingStart="@dimen/small_2x"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:drawableStartCompat="@drawable/trip_smoke_yes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="@string/smoke_preferences" />
+
+            <TextView
+                android:id="@+id/animal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/small_2x"
+                android:drawablePadding="@dimen/small_2x"
+                android:paddingStart="@dimen/small_2x"
+                android:paddingEnd="@dimen/small_2x"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:drawableStartCompat="@drawable/trip_animal_yes"
+                tools:text="@string/animals_preferences" />
+
+
+            <TextView
+                android:id="@+id/music"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/small_2x"
+                android:drawablePadding="@dimen/small_2x"
+                android:paddingStart="@dimen/small_2x"
+                android:paddingEnd="@dimen/small_2x"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:drawableStartCompat="@drawable/trip_music_yes"
+                tools:text="@string/music_preferences" />
+
+
+            <TextView
+                android:id="@+id/additionalInfo"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_2x"
+                android:paddingStart="@dimen/small_2x"
+                android:paddingEnd="@dimen/small_2x"
+                tools:text="This is a description of the trip where the user can insert additional information" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/small_2x"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/carImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="@dimen/medium_4x"
+                    android:layout_marginEnd="@dimen/medium_4x"
+                    android:contentDescription="@string/content_description_carImage"
+                    android:src="@drawable/car" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/carType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/small_2x"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        app:layout_constraintBottom_toTopOf="@id/carColor"
+                        app:layout_constraintStart_toEndOf="@id/carImageView"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Jeep" />
+
+                    <TextView
+                        android:id="@+id/carColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        app:layout_constraintStart_toStartOf="@id/carType"
+                        app:layout_constraintTop_toBottomOf="@id/carType"
+                        tools:text="Green" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginBottom="40dp"
+        android:contentDescription="@string/book_this_trip"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_acr"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>
