@@ -19,6 +19,7 @@ import coil.transform.CircleCropTransformation
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.GeoPoint
+import it.polito.mad.carpooling_09.MainActivity
 import it.polito.mad.carpooling_09.R
 import it.polito.mad.carpooling_09.data.Stop
 import java.io.File
@@ -279,7 +280,11 @@ fun rotateImage(bitmap: Bitmap, angle: Int): Bitmap {
     return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
 }
 
-fun findDepartureAndArrivalStop(stops: List<Stop>, depFilter: GeoPoint?, arrFilter: GeoPoint?): List<Stop> {
+fun findDepartureAndArrivalStop(
+    stops: List<Stop>,
+    depFilter: GeoPoint?,
+    arrFilter: GeoPoint?
+): List<Stop> {
 
     val departure: Stop?
     val arrival: Stop?
@@ -294,7 +299,7 @@ fun findDepartureAndArrivalStop(stops: List<Stop>, depFilter: GeoPoint?, arrFilt
         arrival = stops[stopsNext(stops, arrFilter)]
     }
 
-    return  listOf(departure, arrival)
+    return listOf(departure, arrival)
 }
 
 fun dateIsPassed(tripDate: Date): Boolean {
@@ -306,4 +311,41 @@ fun dateIsPassed(tripDate: Date): Boolean {
     val twoHourBack = cal.time
 
     return twoHourBack.before(Date())
+}
+
+fun deleteBookingDialog(context: Context, activity: Activity, positiveAction: () -> Unit) {
+    closeKeyboard(activity)
+    MaterialAlertDialogBuilder(context)
+        .setTitle("Do you want to remove the booking?")
+        .setMessage("The booking request will be removed, do you want to proceed anyway?")
+        /*.setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+         // Respond to neutral button press
+        }*/
+        .setNegativeButton("cancel") { dialog, which ->
+            // Respond to negative button press
+        }
+        .setPositiveButton("Confirm") { dialog, which ->
+            // Respond to positive button press
+            positiveAction()
+        }
+        .show()
+}
+
+fun modifyTrip(context: Context, activity: Activity, positiveAction: () -> Unit) {
+    closeKeyboard(activity)
+    MaterialAlertDialogBuilder(context)
+        .setTitle("Do you want to modify the trip?")
+        .setMessage("All the booked passenger will be removed if you modify the trip")
+        /*.setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+         // Respond to neutral button press
+        }*/
+        .setNegativeButton("cancel") { dialog, which ->
+            // Respond to negative button press
+            (activity as MainActivity).progressBarVisibility(false)
+        }
+        .setPositiveButton("Confirm") { dialog, which ->
+            // Respond to positive button press
+            positiveAction()
+        }
+        .show()
 }

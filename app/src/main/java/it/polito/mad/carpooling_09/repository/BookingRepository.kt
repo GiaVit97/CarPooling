@@ -117,7 +117,7 @@ class BookingRepository {
 
                         trip?.stops?.forEach { stop ->
 
-                            if (stopBooked.name == stop.name && stop.available_seats!! >0) {
+                            if (stopBooked.name == stop.name && stop.available_seats!! > 0) {
                                 stop.available_seats = stop.available_seats?.minus(1)
                             }
 
@@ -260,5 +260,66 @@ class BookingRepository {
                 Log.e(TAG, "Error on 'addBooking': ${e.message}")
                 callback(false, e.message)
             }
+    }
+
+    fun deleteBookingWithTripID(
+        tripID: String?,
+        userID: String?,
+        callback: (success: Boolean, error: String?) -> Unit
+    ) {
+
+        if (tripID != null && userID != null) {
+            db.collection(Trip.COLLECTION_TRIPS).document(tripID)
+                .collection(Booking.COLLECTION_BOOKINGS).whereEqualTo(Booking.FIELD_USER_ID, userID)
+                .get().addOnSuccessListener { snapshot ->
+                    db.runTransaction { transaction ->
+                        snapshot.documents.forEach {
+                            transaction.update(
+                                it.reference,
+                                Booking.FIELD_STATUS,
+                                Status.Rejected
+                            )
+                        }
+                    }.addOnSuccessListener {
+                        callback(true, null)
+                    }.addOnFailureListener { e ->
+                        Log.e(TAG, "Error on deleteBookingWithTripID: ${e.message}")
+                        callback(false, e.message)
+                    }
+                }.addOnFailureListener { e ->
+                    Log.e(TAG, "Error on deleteBookingWithTripID: ${e.message}")
+                    callback(false, e.message)
+                }
+        } else {
+            Log.e(TAG, "Trip ID can't be null")
+        }
+    }
+
+    fun deleteAllBookedUsers(
+        tripID: String?,
+        callback: (success: Boolean, errorMessage: String?) -> Unit
+    ) {
+        if (tripID != null) {
+            db.collection(Trip.COLLECTION_TRIPS).document(tripID)
+                .collection(Booking.COLLECTION_BOOKINGS).get().addOnSuccessListener { snapshot ->
+                    db.runTransaction { transaction ->
+                        snapshot.documents.forEach { transaction.delete(it.reference) }
+
+                    }.addOnSuccessListener {
+                        callback(true, null)
+
+                    }.addOnFailureListener { e ->
+                        Log.e(TAG, "Error on deleteAllBookedUsers: ${e.message}")
+                        callback(false, e.message)
+
+                    }
+                }.addOnFailureListener { e ->
+                    Log.e(TAG, "Error on deleteAllBookedUsers: ${e.message}")
+                    callback(false, e.message)
+
+                }
+        } else {
+            Log.e(TAG, "Trip ID can't be null")
+        }
     }
 }

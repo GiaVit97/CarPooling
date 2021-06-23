@@ -163,4 +163,5 @@
     <string name="estimated_duration_text">Estimated duration: 00:00</string>
     <string name="image_block">Image notify that the trip is block</string>
     <string name="passenger">Passenger</string>
+    <string name="rate_passengers">Rate Passengers</string>
 </resources>

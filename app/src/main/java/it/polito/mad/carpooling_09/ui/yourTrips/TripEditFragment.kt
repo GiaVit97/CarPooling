@@ -283,16 +283,6 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
 
                 imageURL = trip.carInfo?.urlPhoto
 
-                //Take the path for the temporary profile image in cache
-                if (savedInstanceState != null) {
-                    isCarImageChanged = savedInstanceState.getBoolean("isCarImageChanged")
-                    tempPath =
-                        File(
-                            requireContext().cacheDir,
-                            savedInstanceState.getString("filePath") ?: ""
-                        )
-                }
-
                 // Check if we have a temporary user profile image in cache to load instead of the DB one
                 if (isCarImageChanged && tempPath.exists()) {
                     loadImage(binding.carImageView, tempPath, R.drawable.car)
@@ -316,6 +306,10 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
                 oldTrip?.estimatedDuration = null
 
             }
+        }
+
+        if (isCarImageChanged && tempPath.exists()) {
+            loadImage(binding.carImageView, tempPath, R.drawable.car)
         }
 
         binding.addStop.setOnClickListener {
@@ -585,7 +579,7 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
                         return true
                     }
                 }
-                binding.progressBar.visibility = View.VISIBLE
+                (requireActivity() as MainActivity).progressBarVisibility(true)
 
                 val prSmoke =
                     when {
@@ -632,7 +626,7 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
 
 
                 val stopsWithoutTime = createStopsArray()
-                var finalStopsList : List<Stop> = mutableListOf()
+                var finalStopsList: List<Stop> = mutableListOf()
 
                 lifecycleScope.executeAsyncTask(
                     onPreExecute = {},
@@ -645,9 +639,10 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
                             nameOfCities[stop.geoHash!!] = true
                         }
 
-                        val differenceDates = finalStopsList[finalStopsList.size - 1].time?.time?.minus(
-                            finalStopsList[0].time?.time!!
-                        )
+                        val differenceDates =
+                            finalStopsList[finalStopsList.size - 1].time?.time?.minus(
+                                finalStopsList[0].time?.time!!
+                            )
 
 
                         var estimatedDuration: String? = null
@@ -659,30 +654,30 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
                             estimatedDuration = "$hours:$minutes"
                         }
 
-                val newTrip = Trip(
-                    id,
-                    Firebase.auth.currentUser?.uid!!,
-                    finalStopsList,
-                    nameOfCities,
-                    binding.price.text.toString().replace(",", ".").toDouble(),
-                    CarInfo(
-                        imagePath,
-                        binding.carColor.text.toString(),
-                        binding.carType.text.toString()
-                    ),
-                    binding.numberSeats.text.toString().toInt(),
-                    binding.additionalInfo.text.toString(),
-                    TripPreferences(prSmoke, prAnimal, prMusic),
-                    estimatedDuration,
-                    depDate,
-                    isBlocked ?: false
-                )
+                        val newTrip = Trip(
+                            id,
+                            Firebase.auth.currentUser?.uid!!,
+                            finalStopsList,
+                            nameOfCities,
+                            binding.price.text.toString().replace(",", ".").toDouble(),
+                            CarInfo(
+                                imagePath,
+                                binding.carColor.text.toString(),
+                                binding.carType.text.toString()
+                            ),
+                            binding.numberSeats.text.toString().toInt(),
+                            binding.additionalInfo.text.toString(),
+                            TripPreferences(prSmoke, prAnimal, prMusic),
+                            estimatedDuration,
+                            depDate,
+                            isBlocked ?: false
+                        )
 
                         if (isNewTrip) {
 
                             vm.addTrip(newTrip) { success, documentId, errorMessage ->
                                 vm.setIsSaving(false)
-                                binding.progressBar.visibility = View.GONE
+                                (requireActivity() as MainActivity).progressBarVisibility(false)
 
                                 if (success && documentId != null) {
                                     snackBar(view, "Trip was created successfully")
@@ -710,35 +705,53 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
                             }
 
                         } else {
-                            vm.updateTrip(newTrip) { success, errorMessage ->
-                                vm.setIsSaving(false)
-                                binding.progressBar.visibility = View.GONE
 
-                                if (success) {
-                                    snackBar(view, "Trip was edited successfully")
+                            modifyTrip(requireContext(), requireActivity()) {
+                                vm.deleteAllBookedUsers(newTrip.id) { success, errorMessage ->
+
+                                    if (success) {
+                                        vm.updateTrip(newTrip) { success2, errorMessage2 ->
 
 
-                                    val action =
-                                        TripEditFragmentDirections.actionTripEditFragmentToTripDetailsFragment(
-                                            newTrip.id!!, newTrip.userID!!
+                                            vm.setIsSaving(false)
+                                            (requireActivity() as MainActivity).progressBarVisibility(
+                                                false
+                                            )
+
+                                            if (success2) {
+                                                snackBar(view, "Trip was edited successfully")
+
+
+                                                val action =
+                                                    TripEditFragmentDirections.actionTripEditFragmentToTripDetailsFragment(
+                                                        newTrip.id!!, newTrip.userID!!
+                                                    )
+                                                findNavController().navigate(action)
+
+                                                //Delete the temporary image before close the activity
+
+                                                tempPath.delete()
+                                                isCarImageChanged = false
+                                                stopList = mutableListOf()
+
+                                            } else {
+                                                Log.e(TAG, errorMessage2.toString())
+                                                snackBarError(
+                                                    view,
+                                                    "Error during the update of the trip, try again please"
+                                                )
+                                            }
+                                        }
+                                    } else {
+                                        Log.e(TAG, errorMessage.toString())
+                                        snackBarError(
+                                            view,
+                                            "Error during the update of the trip, try again please"
                                         )
-                                    findNavController().navigate(action)
-
-                                    //Delete the temporary image before close the activity
-
-                                    tempPath.delete()
-                                    isCarImageChanged = false
-                                    stopList = mutableListOf()
-
-                                } else {
-                                    Log.e(TAG, errorMessage.toString())
-                                    snackBarError(
-                                        view,
-                                        "Error during the update of the trip, try again please"
-                                    )
+                                    }
                                 }
-
                             }
+
                         }
 
 
@@ -756,9 +769,9 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
                 ) { success, errorMessage ->
                     if (success) {
                         if (isBlocked == true)
-                            snackBar(view, "Trip has been blocked successfully")
-                        else
                             snackBar(view, "Trip has been unblocked successfully")
+                        else
+                            snackBar(view, "Trip has been blocked successfully")
                         findNavController().navigate(TripEditFragmentDirections.actionTripEditFragmentToTripListFragment())
                     } else {
                         Log.e(TAG, errorMessage.toString())
@@ -919,7 +932,7 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
                                 val minutes =
                                     DecimalFormat("00").format((totalSecs!! - hours.toInt() * 3600) / 60)
 
-                                binding.estimatedTripDuration.setText("Estimated duration: $hours:$minutes")
+                                binding.estimatedTripDuration.text = "Estimated duration: $hours:$minutes"
                             }
                         })
                 }
@@ -1172,8 +1185,6 @@ class TripEditFragment : Fragment(R.layout.fragment_trip_edit) {
                         tempPath.delete()
                         findNavController().navigateUp()
                     }
-                    Log.d("PROVA", "handleOnBackPressed: " + oldTrip)
-                    Log.d("PROVA", "handleOnBackPressed: " + newTrip)
                 }
 
             })

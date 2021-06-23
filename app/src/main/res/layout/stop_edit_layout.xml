@@ -12,7 +12,6 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/small_2x"
         android:layout_weight="6"
         android:hint="@string/location_text"
         app:errorEnabled="true"

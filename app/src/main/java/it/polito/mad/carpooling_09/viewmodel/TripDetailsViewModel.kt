@@ -85,4 +85,8 @@ class TripDetailsViewModel(tripID: String, userID: String) : ViewModel() {
 
 
     }
+
+    fun deleteUserBookingWithTripID(tripID: String?, userID: String?, callback: (success: Boolean, errorMessage: String?) -> Unit) {
+        bookingRepository.deleteBookingWithTripID(tripID, userID, callback)
+    }
 }

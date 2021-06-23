@@ -6,12 +6,14 @@ import androidx.lifecycle.ViewModel
 import it.polito.mad.carpooling_09.data.Booking
 import it.polito.mad.carpooling_09.data.Stop
 import it.polito.mad.carpooling_09.data.Trip
+import it.polito.mad.carpooling_09.repository.BookingRepository
 import it.polito.mad.carpooling_09.repository.TripRepository
 import java.util.*
 
 class TripEditViewModel(private val tripID: String = " ") : ViewModel() {
 
-    private var tripRepository = TripRepository()
+    private val tripRepository = TripRepository()
+    private val bookingRepository = BookingRepository()
 
     private val trip: MutableLiveData<Trip> =
         tripRepository.getTrip(tripID) as MutableLiveData<Trip>
@@ -91,6 +93,10 @@ class TripEditViewModel(private val tripID: String = " ") : ViewModel() {
         depDate : Date?,
         callback: (success: Boolean, errorMessage: String?) -> Unit) {
         tripRepository.blockTrip(tripID, blocked, listStops, depDate, callback)
+    }
+
+    fun deleteAllBookedUsers(tripID: String?, callback: (success: Boolean, errorMessage: String?) -> Unit) {
+        bookingRepository.deleteAllBookedUsers(tripID, callback)
     }
 
 }

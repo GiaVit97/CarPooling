@@ -133,7 +133,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/small_2x"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                             tools:text="MarcoRossi97" />
 
                         <RatingBar
@@ -175,7 +175,7 @@
                 android:id="@+id/stopsView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"/>
+                android:nestedScrollingEnabled="false" />
 
 
             <TextView
@@ -262,9 +262,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/small_2x"
                 android:layout_gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/small_2x">
 
                 <ImageView
                     android:id="@+id/carImageView"
@@ -297,7 +297,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                         app:layout_constraintBottom_toBottomOf="parent"
-
+                        android:layout_marginBottom="70dp"
                         app:layout_constraintStart_toStartOf="@id/carType"
                         app:layout_constraintTop_toBottomOf="@id/carType"
                         tools:text="Green" />
@@ -308,17 +308,71 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tripOverLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginBottom="40dp"
-        android:contentDescription="@string/book_this_trip"
-        android:visibility="gone"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_acr"
-        tools:visibility="visible" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        tools:visibility="visible" >
+
+    <TextView
+        android:id="@+id/tripOverText"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The trip is over"
+        android:drawablePadding="@dimen/small_2x"
+        android:drawableStart="@drawable/ic_baseline_timer_off_24"
+        android:textColor="#b50000"
+        app:layout_constraintBottom_toTopOf="@id/reviewPassengersButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/reviewPassengersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_menu_share"
+        android:text="@string/rate_passengers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tripOverText"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+android:contentDescription="@string/book_this_trip"
+android:id="@+id/fab"
+android:layout_gravity="bottom|end"
+android:layout_height="wrap_content"
+android:layout_margin="@dimen/fab_margin"
+android:layout_marginBottom="40dp"
+android:layout_width="wrap_content"
+android:visibility="gone"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:srcCompat="@drawable/ic_acr"
+tools:visibility="visible" />
+
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+android:id="@+id/fab_cancel"
+android:layout_gravity="bottom|end"
+android:layout_height="wrap_content"
+android:layout_margin="@dimen/fab_margin"
+android:layout_marginBottom="40dp"
+android:layout_width="wrap_content"
+android:visibility="gone"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:srcCompat="@drawable/ic_baseline_delete_24"
+tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

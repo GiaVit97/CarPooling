@@ -172,8 +172,4 @@
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="250dp" />
-
 </LinearLayout>

@@ -36,6 +36,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
 import it.polito.mad.carpooling_09.BuildConfig
+import it.polito.mad.carpooling_09.MainActivity
 import it.polito.mad.carpooling_09.MapDialogFragment
 import it.polito.mad.carpooling_09.R
 import it.polito.mad.carpooling_09.data.User
@@ -374,7 +375,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
             R.id.save -> {
                 // Save the new information inside Firestore
                 if (hasError()) {
-                    bindingEditInfo.progressBar.visibility = View.VISIBLE
+                    (requireActivity() as MainActivity).progressBarVisibility(true)
                     saveOnFirestore()
                 } else {
                     snackBarError(view, "There are some errors on the page")
@@ -479,7 +480,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 
         vm.updateUserWithImage(userNew) { success, errorMessage ->
             //vm.setIsSaving(false)
-            bindingEditInfo.progressBar.visibility = View.GONE
+            (requireActivity() as MainActivity).progressBarVisibility(false)
 
             if (success) {
                 snackBar(view, "User was edited successfully")

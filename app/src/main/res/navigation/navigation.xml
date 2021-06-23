@@ -144,6 +144,12 @@
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_tripDetailsFragment_to_managePassengersFragment"
+            app:destination="@id/managePassengersFragment" />
+        <action
+            android:id="@+id/action_tripDetailsFragment_to_ShowProfileFragment"
+            app:destination="@id/ShowProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/tripEditFragment"

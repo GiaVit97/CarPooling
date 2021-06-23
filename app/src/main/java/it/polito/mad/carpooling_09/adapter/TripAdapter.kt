@@ -145,17 +145,6 @@ class TripAdapter(
         return data.size
     }
 
-    private fun endedTrip(tripDate: Date): Boolean {
-        val c: Calendar = Calendar.getInstance()
-        c.set(Calendar.HOUR,0)
-        c.set(Calendar.MINUTE,0)
-        c.set(Calendar.SECOND,0)
-        val today: Date = c.time
-
-        return tripDate.before(today)
-
-    }
-
     override fun getItemViewType(position: Int): Int {
         return R.layout.trip_layout
     }
